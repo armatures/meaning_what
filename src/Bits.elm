@@ -21,7 +21,7 @@ root model =
                     "white"
 
         columnCount =
-            3
+            30
 
         sideLength =
             10
@@ -31,15 +31,15 @@ root model =
                 [ fill <| boolColor bool
                 , height "10"
                 , width "10"
-                , y <| toString <| (*) sideLength <| (index // columnCount)
+                , y <| toString <| (*) sideLength <| index // columnCount
                 , x <| toString <| (*) sideLength <| index % columnCount
                 ]
                 []
     in
         div []
             [ svg
-                [ width "200"
-                , height "200"
+                [ width <| toString <| columnCount * sideLength
+                , height <| toString <| (*) sideLength <| (List.length model.noise) // columnCount
                 ]
                 (List.indexedMap showBool model.noise)
             ]

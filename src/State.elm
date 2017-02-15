@@ -1,6 +1,7 @@
 module State exposing (..)
 
 import Types exposing (..)
+import Random
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -22,4 +23,4 @@ initialModel =
 
 initialCmd : Cmd Msg
 initialCmd =
-    Cmd.none
+    Random.generate Noise <| Random.list (30 * 30) Random.bool

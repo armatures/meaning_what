@@ -24,7 +24,7 @@ root model =
             30
 
         sideLength =
-            10
+            3
 
         showBool index bool =
             rect

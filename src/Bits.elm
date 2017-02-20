@@ -1,5 +1,6 @@
 module Bits exposing (root)
 
+import Grid exposing (Color)
 import Html exposing (Html, div)
 import Types exposing (Model, Msg)
 import Svg exposing (..)
@@ -10,36 +11,20 @@ import Svg.Attributes exposing (..)
 
 
 root : Model -> Html Msg
-root model =
-    let
-        boolColor bool =
-            case bool of
-                True ->
-                    "black"
+root =
+    modelAsColors >> Grid.viewColors 30 3
 
-                False ->
-                    "white"
 
-        columnCount =
-            30
+modelAsColors : Model -> List Color
+modelAsColors model =
+    List.map boolColor model.noise
 
-        sideLength =
-            3
 
-        showBool index bool =
-            rect
-                [ fill <| boolColor bool
-                , height "10"
-                , width "10"
-                , y <| toString <| (*) sideLength <| index // columnCount
-                , x <| toString <| (*) sideLength <| index % columnCount
-                ]
-                []
-    in
-        div []
-            [ svg
-                [ width <| toString <| columnCount * sideLength
-                , height <| toString <| (*) sideLength <| (List.length model.noise) // columnCount
-                ]
-                (List.indexedMap showBool model.noise)
-            ]
+boolColor : Bool -> Color
+boolColor bool =
+    case bool of
+        True ->
+            Color False False False
+
+        False ->
+            Color True True True

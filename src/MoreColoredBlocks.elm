@@ -13,7 +13,7 @@ import Svg.Attributes exposing (..)
 
 root : Model -> Html Msg
 root =
-    toColors >> Grid.viewColors 18 10
+    toColors >> Grid.viewColors 18 20
 
 
 toColors : Model -> List Color
@@ -28,8 +28,15 @@ toColorsHelp =
             ( r :: g :: b :: hexTail, bools ) ->
                 (Color r g b) :: toColorsHelp ( hexTail, bools )
 
-            ( hexValues, a :: b :: c :: d :: boolTail ) ->
-                toColorsHelp ( [ Converter.toHex ( a, b, c, d ) ] ++ hexValues, boolTail )
+            ( hexValues, r1 :: g1 :: b1 :: r2 :: g2 :: b2 :: r3 :: g3 :: b3 :: r4 :: g4 :: b4 :: boolTail ) ->
+                toColorsHelp
+                    ( [ Converter.toHex ( r1, r2, r3, r4 )
+                      , Converter.toHex ( g1, g2, g3, g4 )
+                      , Converter.toHex ( b1, b2, b3, b4 )
+                      ]
+                        ++ hexValues
+                    , boolTail
+                    )
 
             _ ->
                 []

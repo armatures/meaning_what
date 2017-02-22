@@ -1,6 +1,6 @@
 module Bits exposing (root)
 
-import Grid exposing (Color)
+import Grid exposing (Color, viewGrid)
 import Html exposing (Html, div)
 import Types exposing (Model, Msg)
 import Svg exposing (..)
@@ -11,8 +11,8 @@ import Svg.Attributes exposing (..)
 
 
 root : Model -> Html Msg
-root =
-    modelAsColors >> Grid.viewColors 60 3
+root model =
+    Grid.viewColors 3 20 (modelAsColors model)
 
 
 modelAsColors : Model -> List Color
@@ -24,7 +24,7 @@ boolColor : Bool -> Color
 boolColor bool =
     case bool of
         True ->
-            Color '0' '0' '0'
+            Color 'f' 'f' 'f'
 
         False ->
-            Color 'f' 'f' 'f'
+            Color '0' '0' '0'

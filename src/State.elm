@@ -23,4 +23,4 @@ initialModel =
 
 initialCmd : Cmd Msg
 initialCmd =
-    Random.generate Noise <| Random.list (4 * 3 * 18 * 10) Random.bool
+    Random.generate Noise <| Random.list (4 * 3) Random.bool

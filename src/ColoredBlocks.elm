@@ -12,7 +12,7 @@ import Svg.Attributes exposing (..)
 
 root : Model -> Html Msg
 root =
-    modelAsColors >> Grid.viewColors 30 6
+    modelAsColors >> Grid.viewColors 1 20
 
 
 modelAsColors : Model -> List Color

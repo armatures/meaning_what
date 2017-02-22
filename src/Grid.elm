@@ -1,8 +1,9 @@
-module Grid exposing (viewColors, Color)
+module Grid exposing (viewColors, viewGrid, Color)
 
 import Html exposing (Html, div)
+import Html.Attributes exposing (..)
 import Svg exposing (..)
-import Svg.Attributes exposing (..)
+import Svg.Attributes exposing (display, fill, x, y)
 import Types exposing (Msg)
 
 
@@ -12,24 +13,28 @@ type alias Color =
 
 viewColors : Int -> Int -> List Color -> Html Msg
 viewColors columnCount sideLength colors =
+    viewGrid columnCount sideLength sideLength colors
+
+
+viewGrid : Int -> Int -> Int -> List Color -> Html Msg
+viewGrid columnCount pixelHeight pixelWidth colors =
     let
         showPixel index colorString =
             rect
                 [ fill <| colorString
-                , height <| toString sideLength
-                , width <| toString sideLength
-                , y <| toString <| (*) sideLength <| index // columnCount
-                , x <| toString <| (*) sideLength <| index % columnCount
+                , height pixelHeight
+                , width pixelWidth
+                , y <| toString <| (*) pixelHeight <| index // columnCount
+                , x <| toString <| (*) pixelWidth <| index % columnCount
                 ]
                 []
     in
-        div []
-            [ svg
-                [ width <| toString <| columnCount * sideLength
-                , height <| toString <| (*) sideLength <| (List.length colors) // columnCount
-                ]
-                (List.indexedMap showPixel <| List.map asString colors)
+        svg
+            [ width <| columnCount * pixelWidth
+            , height <| (*) pixelHeight <| Basics.ceiling <| toFloat (List.length colors) / toFloat columnCount
+            , display "inline-block"
             ]
+            (List.indexedMap showPixel <| List.map asString colors)
 
 
 asString : Color -> String

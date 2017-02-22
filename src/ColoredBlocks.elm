@@ -7,12 +7,12 @@ import Svg exposing (..)
 import Svg.Attributes exposing (..)
 
 
-{- represent the model as colored squares -}
+{- represent the model as colored squares with one bit of precision per RBG channel -}
 
 
 root : Model -> Html Msg
 root =
-    modelAsColors >> Grid.viewColors 30 10
+    modelAsColors >> Grid.viewColors 30 6
 
 
 modelAsColors : Model -> List Color
@@ -24,7 +24,17 @@ toColors : List Bool -> List Color
 toColors bits =
     case bits of
         a :: b :: c :: tail ->
-            (Color a b c) :: toColors tail
+            (Color (asHexChar a) (asHexChar b) (asHexChar c)) :: toColors tail
 
         _ ->
             []
+
+
+asHexChar : Bool -> Char
+asHexChar bool =
+    case bool of
+        True ->
+            'f'
+
+        False ->
+            '0'

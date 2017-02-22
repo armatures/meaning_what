@@ -1,5 +1,6 @@
 module View exposing (..)
 
+import MoreColoredBlocks
 import Types exposing (Model, Msg)
 import Html exposing (..)
 import Bits
@@ -11,4 +12,5 @@ root model =
     div []
         [ Bits.root model
         , ColoredBlocks.root model
+        , MoreColoredBlocks.root model
         ]

@@ -12,7 +12,7 @@ import Svg.Attributes exposing (..)
 
 root : Model -> Html Msg
 root =
-    modelAsColors >> Grid.viewColors 30 3
+    modelAsColors >> Grid.viewColors 60 3
 
 
 modelAsColors : Model -> List Color
@@ -24,7 +24,7 @@ boolColor : Bool -> Color
 boolColor bool =
     case bool of
         True ->
-            Color False False False
+            Color '0' '0' '0'
 
         False ->
-            Color True True True
+            Color 'f' 'f' 'f'

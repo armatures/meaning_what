@@ -7,7 +7,7 @@ import Types exposing (Msg)
 
 
 type alias Color =
-    { r : Bool, g : Bool, b : Bool }
+    { r : Char, g : Char, b : Char }
 
 
 viewColors : Int -> Int -> List Color -> Html Msg
@@ -28,19 +28,10 @@ viewColors columnCount sideLength colors =
                 [ width <| toString <| columnCount * sideLength
                 , height <| toString <| (*) sideLength <| (List.length colors) // columnCount
                 ]
-                (List.indexedMap showPixel <| List.map asHex colors)
+                (List.indexedMap showPixel <| List.map asString colors)
             ]
 
 
-asHex : Color -> String
-asHex color =
-    let
-        channelString bool =
-            case bool of
-                True ->
-                    "f"
-
-                False ->
-                    "0"
-    in
-        "#" ++ channelString color.r ++ channelString color.g ++ channelString color.b
+asString : Color -> String
+asString color =
+    String.fromList [ '#', color.r, color.g, color.b ]

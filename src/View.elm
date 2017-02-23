@@ -2,14 +2,14 @@ module View exposing (..)
 
 import Html.Attributes exposing (attribute)
 import MoreColoredBlocks
-import Types exposing (Model, Msg)
+import Types exposing (Model, Msg(..))
 import Html exposing (..)
 import Bits
 import ColoredBlocks
 import Grid exposing (Color, viewGrid)
 
 
-root : Model -> Html Msg
+root : Model -> Html Types.Msg
 root model =
     let
         colorGuide =

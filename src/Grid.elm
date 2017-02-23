@@ -2,9 +2,10 @@ module Grid exposing (viewColors, viewGrid, Color)
 
 import Html exposing (Html, div)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 import Svg exposing (..)
 import Svg.Attributes exposing (display, fill, x, y)
-import Types exposing (Msg)
+import Types exposing (Msg(..), BitMsg(..))
 
 
 type alias Color =
@@ -26,6 +27,7 @@ viewGrid columnCount pixelHeight pixelWidth colors =
                 , width pixelWidth
                 , y <| toString <| (*) pixelHeight <| index // columnCount
                 , x <| toString <| (*) pixelWidth <| index % columnCount
+                , onClick <| BitsMsg <| ToggleBit index
                 ]
                 []
     in

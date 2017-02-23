@@ -38,8 +38,3 @@ toHex ( a, b, c, d ) =
 
             Nothing ->
                 Debug.crash "no hex value found in Converter.toHex function!"
-
-
-
---                ['0' ,'1' ,'2' ,'3' ,'4' ,'6' ,'7' ,'8' ,'9' ,'a' ,'b' ,'c' ,'d' ,'e' ,'f' ]
---    List.foldr (\bool accumulator -> 1 + accumulator) 0 bools

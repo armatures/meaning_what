@@ -3,7 +3,7 @@ module MoreColoredBlocks exposing (root)
 import Converter
 import Grid exposing (Color)
 import Html exposing (Html, div)
-import Types exposing (Model, Msg)
+import Types exposing (Model, Msg(Noop))
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
 
@@ -13,7 +13,7 @@ import Svg.Attributes exposing (..)
 
 root : Model -> Html Msg
 root =
-    toColors >> Grid.viewColors 18 20
+    toColors >> Grid.viewColors 18 20 Noop
 
 
 toColors : Model -> List Color

@@ -8,7 +8,7 @@ type alias Model =
 type Msg
     = Noise (List Bool)
     | BitsMsg BitMsg
-    | Noop
+    | Noop Int
 
 
 type BitMsg

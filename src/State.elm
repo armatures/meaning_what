@@ -15,7 +15,7 @@ update msg model =
                 Bits.update subMsg model.noise
             in
                 ( {model | noise = bits}, Cmd.none )
-        Noop ->
+        Noop _ ->
             (model, Cmd.none)
 
 subscriptions : Model -> Sub Msg
@@ -31,20 +31,3 @@ initialModel =
 initialCmd : Cmd Msg
 initialCmd =
     Random.generate Noise <| Random.list (4 * 3) Random.bool
-
---
----- Update as usual
---update : Msg -> Model -> ( Model, Cmd Msg )
---update msg_ model =
---  case msg_ of
---    Ratings msg ->
---      let
---        ( ratings, cmd ) =
---          Ui.Ratings.update msg model.ratings
---      in
---        ( { model | ratings = ratings }, Cmd.map Ratings cmd )
---
----- Render it in your view
---view : Model -> Html.Html Msg
---view model =
---  Html.map Ratings (Ui.Ratings.view model.ratings)

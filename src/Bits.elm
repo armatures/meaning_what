@@ -2,7 +2,7 @@ module Bits exposing (root, update)
 
 import Grid exposing (Color, viewGrid)
 import Html exposing (Html, div)
-import Types exposing (BitMsg, Model, Msg(..))
+import Types exposing (BitMsg(ToggleBit), Model, Msg(..))
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
 
@@ -12,7 +12,7 @@ import Svg.Attributes exposing (..)
 
 root : Types.Model -> Html Msg
 root model =
-    Grid.viewColors 3 20 (modelAsColors model)
+    Grid.viewColors 3 20 (BitsMsg << ToggleBit) (modelAsColors model)
 
 
 type alias Model =

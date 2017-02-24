@@ -16,6 +16,7 @@ root model =
             viewGrid 3
                 3
                 20
+                Noop
                 [ Color 'f' '0' '0'
                 , Color '0' 'f' '0'
                 , Color '0' '0' 'f'

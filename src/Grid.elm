@@ -12,13 +12,13 @@ type alias Color =
     { r : Char, g : Char, b : Char }
 
 
-viewColors : Int -> Int -> List Color -> Html Msg
-viewColors columnCount sideLength colors =
-    viewGrid columnCount sideLength sideLength colors
+viewColors : Int -> Int -> (Int -> Msg) -> List Color -> Html Msg
+viewColors columnCount sideLength msg colors =
+    viewGrid columnCount sideLength sideLength msg colors
 
 
-viewGrid : Int -> Int -> Int -> List Color -> Html Msg
-viewGrid columnCount pixelHeight pixelWidth colors =
+viewGrid : Int -> Int -> Int -> (Int -> Msg) -> List Color -> Html Msg
+viewGrid columnCount pixelHeight pixelWidth msg colors =
     let
         showPixel index colorString =
             rect
@@ -27,7 +27,7 @@ viewGrid columnCount pixelHeight pixelWidth colors =
                 , width pixelWidth
                 , y <| toString <| (*) pixelHeight <| index // columnCount
                 , x <| toString <| (*) pixelWidth <| index % columnCount
-                , onClick <| BitsMsg <| ToggleBit index
+                , onClick <| msg index
                 ]
                 []
     in

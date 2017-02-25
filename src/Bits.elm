@@ -2,7 +2,7 @@ module Bits exposing (root, update)
 
 import Grid exposing (Color, viewGrid)
 import Html exposing (Html, div)
-import Types exposing (BitMsg(ToggleBit), Model, Msg(..))
+import Types exposing (Model, Msg(..))
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
 
@@ -12,29 +12,27 @@ import Svg.Attributes exposing (..)
 
 root : Types.Model -> Html Msg
 root model =
-    Grid.viewColors 3 20 (BitsMsg << ToggleBit) (modelAsColors model)
+    Grid.viewColors 3 20 (ToggleBit) (modelAsColors model)
 
 
 type alias Model =
     List Bool
 
 
-update : BitMsg -> Model -> ( Model, Cmd Msg )
-update msg bits =
-    case msg of
-        Types.ToggleBit soughtIndex ->
-            let
-                newBits =
-                    List.indexedMap
-                        (\i bool ->
-                            if i == soughtIndex then
-                                not bool
-                            else
-                                bool
-                        )
-                        bits
-            in
-                ( newBits, Cmd.none )
+update : Int -> Model -> ( Model, Cmd Msg )
+update soughtIndex bits =
+    let
+        newBits =
+            List.indexedMap
+                (\i bool ->
+                    if i == soughtIndex then
+                        not bool
+                    else
+                        bool
+                )
+                bits
+    in
+        ( newBits, Cmd.none )
 
 
 modelAsColors : Types.Model -> List Color

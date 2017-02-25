@@ -7,9 +7,5 @@ type alias Model =
 
 type Msg
     = Noise (List Bool)
-    | BitsMsg BitMsg
+    | ToggleBit Int
     | Noop Int
-
-
-type BitMsg
-    = ToggleBit Int

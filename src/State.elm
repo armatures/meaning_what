@@ -10,9 +10,9 @@ update msg model =
     case msg of
         Noise bools ->
             ( { model | noise = bools }, Cmd.none )
-        BitsMsg subMsg ->
+        ToggleBit index ->
             let (bits, cmd ) =
-                Bits.update subMsg model.noise
+                Bits.update index model.noise
             in
                 ( {model | noise = bits}, Cmd.none )
         Noop _ ->
